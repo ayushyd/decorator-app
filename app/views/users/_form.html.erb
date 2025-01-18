@@ -1,0 +1,21 @@
+<%=form_with(model: @user) do |f|%>
+<div class="form-field">
+	<%=f.label :name%>
+	<%=f.text_field :name, placeholder: "Enter Name"%>
+</div>
+
+<div class="form-field">
+	<%=f.label :email%>
+	<%=f.text_field :email, placeholder: "Enter Email"%>
+</div>
+
+<div class="form-field">
+	<%=f.label :role%>
+	<%=f.select :role, User.roles.keys.map {|role| [role.humanize, role]}, {prompt: "Select User Role"}%>
+</div>
+
+<div class="form-field">
+	<%=f.submit "create"%>
+</div>
+
+<%end%>
