@@ -1,6 +1,6 @@
 <h1> Payment New</h1>
 
-<%=form_with(model:[@user, @payment]) do |f|%>
+<%=form_with(model:[@user, @payment], multipe: true) do |f|%>
 <div class="form-field">
 	<%=f.label :amount%>
 	<%=f.text_field :amount, placeholder: "Enter Amount"%>
@@ -14,6 +14,11 @@
 <div class="form-field">
 	<%=f.label :status%>
 	<%=f.select :status, Payment&.statuses.keys.map{|status| [status.humanize, status]},{prompt:"Select Status"}%>
+</div>
+
+<div class="form-field">
+	<%=f.label :avatar%>
+	<%=f.file_field :avatar%>
 </div>
 
 <div class="form-field">

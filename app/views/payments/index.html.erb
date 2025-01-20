@@ -6,19 +6,28 @@
       <th scope="col">Amount</th>
       <th scope="col">Payment-Id</th>
       <th scope="col">Status</th>
+      <th scope="col">Avatar</th>
       <th scope="col">Created-At</th>
     </tr>
   </thead>
   <tbody>
-    <%@payments.each do |payment|%>
-    <tr>
-      <th scope="row"><%=payment.id%></th>
-      <td><%=payment_symbol(payment)%></td>
-      <td><%=payment.payment_id%></td>
-      <td><%=::PaymentPresenter.new(payment).display_status%></td>
-      <td><%=payment.created_at.strftime('%d %b %Y')%></td>
-    <%end%>
-     </tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <th scope="row"><%= payment.id %></th>
+        <td><%= payment_symbol(payment) %></td>
+        <td><%= payment.payment_id %></td>
+        <td><%= ::PaymentPresenter.new(payment).display_status %></td>
+        <td>
+          <% if payment.avatar.attached? %>
+            <%= image_tag payment.avatar.variant(resize_to_limit: [100, 100]) %>
+          <% else %>
+            No Avatar
+          <% end %>
+        </td>
+        <td><%= payment.created_at.strftime('%d %b %Y') %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<%=link_to "New Payment", new_user_payment_path, class: "btn btn-primary"%>
+<%= link_to "New Payment", new_user_payment_path, class: "btn btn-primary" %>

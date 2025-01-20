@@ -1,16 +1,18 @@
 class Payment < ApplicationRecord
   belongs_to :user
 
-  validates_presence_of :status
+  # validates_presence_of :status
   validates_presence_of :amount
   validates_presence_of :payment_id
 
+  has_one_attached :avatar 
 
-  scope :actively, -> {where(status: true)}
+
+  # scope :actively, -> {where(status: :accepted)}
 
   enum status: {
-    accepted: true,
-    rejected: false
+    accepted: 1,
+    rejected: 0
   }
 
   after_create :send_mail

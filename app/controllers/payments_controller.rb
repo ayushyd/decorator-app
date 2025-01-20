@@ -3,7 +3,8 @@ class PaymentsController < ApplicationController
   before_action :set_user
 
   def index
-    @payments = @user.payments.actively || []
+    @payments = PaymentQuery.new.call(user: @user,
+      amount: params[:amount], payment_id: params[:payment_id],status: params[:status], start_date: params[:start_date], end_date: params[:end_date])
   end
 
   def new

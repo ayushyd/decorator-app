@@ -1,9 +1,10 @@
 class User < ApplicationRecord
+  has_secure_password
   encrypts :name, deterministic: true
 
-  enum role: {admin: "admin", subadmin: "subadmin"}
+  enum role: {admin: "admin", subadmin: "subadmin", customer: "customer"}
 
-  scope :recent, -> {where("created_at > ?", 1.week.ago)}
+  scope :recent, -> {where.not(role: "customer")}
 
   has_many :payments, dependent: :destroy
 

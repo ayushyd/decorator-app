@@ -16,6 +16,6 @@ class PaymentService
   private
 
   def payment_params
-    @params.require(:payment).permit(:amount, :payment_id, :status)
+    @params.require(:payment).permit(:amount, :payment_id, :status, :avatar)
   end
 end
