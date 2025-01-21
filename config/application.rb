@@ -31,6 +31,7 @@ module DecoratorApp
     config.autoload_paths += %W(#{config.root}/app/decorators)
 
     config.active_record.verbose_query_logs = true
+    config.active_record.observers = :user_observer
   
   end
 end

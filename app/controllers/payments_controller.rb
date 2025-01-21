@@ -4,7 +4,7 @@ class PaymentsController < ApplicationController
 
   def index
     @payments = PaymentQuery.new.call(user: @user,
-      amount: params[:amount], payment_id: params[:payment_id],status: params[:status], start_date: params[:start_date], end_date: params[:end_date])
+      amount: params[:amount], payment_id: params[:payment_id], status: params[:status], start_date: params[:start_date], end_date: params[:end_date])
   end
 
   def new
