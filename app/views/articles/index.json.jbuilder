@@ -8,6 +8,4 @@ json.array!@articles do |article|
     json.source do 
     	json.partial! 'sources/source', source: article.source
     end
-
-	json.created_at article.created_at
 end
