@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def current_user
-    User.find_by(id: params[:id])
+      @current_user ||= User.find_by(id: params[:id])
   end
 end

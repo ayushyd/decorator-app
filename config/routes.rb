@@ -18,6 +18,22 @@ Rails.application.routes.draw do
     resources :payments, only: [:index, :new, :create]
   end
 
+  resources :pays, only: [:new, :create]
+
+  resources :subscriptions, only: [:new, :create]
+
+  delete '/subscriptions', to: 'subscriptions#destroy'
+
+  resources :categories, only: [:index]
+
+  resources :articles, only: [:index]
+  resources :sources, only: [:index]
+
+
+
+  post '/webhooks', to: 'webhooks#create'
+
+
   namespace :api do 
     namespace :v1 do 
       resources :registrations, only: [:index, :create]
